@@ -1,0 +1,2 @@
+id,title,severity,timestamp,file
+vuln-0001,Authentication Bypass in /api/login endpoint,CRITICAL,2026-09-18 06:07:27 UTC,vulnerabilities/vuln-0001.md

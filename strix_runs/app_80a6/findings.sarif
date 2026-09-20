@@ -1,0 +1,118 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Strix",
+          "informationUri": "https://strix.ai",
+          "rules": [
+            {
+              "id": "vuln-0001",
+              "name": "Authentication Bypass in /api/login endpoint",
+              "shortDescription": {
+                "text": "Authentication Bypass in /api/login endpoint"
+              },
+              "fullDescription": {
+                "text": "The /api/login endpoint allows unauthorized access by bypassing authentication checks, enabling unauthorized user sessions."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "help": {
+                "text": "The /api/login endpoint allows unauthorized access by bypassing authentication checks, enabling unauthorized user sessions.\n\nAn attacker can gain access to user accounts and perform actions on behalf of authenticated users.\n\nImplement proper authentication validation in the /api/login endpoint. Use middleware to enforce session tokens and validate credentials before granting access.",
+                "markdown": "The /api/login endpoint allows unauthorized access by bypassing authentication checks, enabling unauthorized user sessions.\n\nAn attacker can gain access to user accounts and perform actions on behalf of authenticated users.\n\nImplement proper authentication validation in the /api/login endpoint. Use middleware to enforce session tokens and validate credentials before granting access."
+              },
+              "properties": {
+                "security-severity": "9.8",
+                "tags": [
+                  "security",
+                  "stride:T",
+                  "stride:I"
+                ]
+              }
+            }
+          ],
+          "version": "1.6.2"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "vuln-0001",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Authentication Bypass in /api/login endpoint\n\nThe /api/login endpoint allows unauthorized access by bypassing authentication checks, enabling unauthorized user sessions."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "SECURITY.md"
+                }
+              }
+            },
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "/api/login",
+                  "kind": "endpoint"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "7c5c4cee852f4cc01bd611975465d74de5a17635ee5d11a56ad330b2f19a700c"
+          },
+          "properties": {
+            "security-severity": "9.8",
+            "strix_vuln_class_hash": "d2c369b64a5e54fccb9b13fdc0203d921790cc6e895d27f34615bec919b68e6b",
+            "synthetic_location": true,
+            "strix": {
+              "id": "vuln-0001",
+              "severity": "critical",
+              "cvss": 9.8,
+              "timestamp": "2026-09-18 06:07:27 UTC",
+              "target": "https://example.com/api/login",
+              "endpoint": "/api/login",
+              "method": "POST",
+              "impact": "An attacker can gain access to user accounts and perform actions on behalf of authenticated users.",
+              "technical_analysis": "The /api/login endpoint lacks proper authentication validation, allowing attackers to send crafted requests without valid credentials.",
+              "remediation_steps": "Implement proper authentication validation in the /api/login endpoint. Use middleware to enforce session tokens and validate credentials before granting access.",
+              "counterevidence": "No authentication checks were found in the endpoint's code, but the vulnerability was confirmed via PoC.",
+              "confidence": "high",
+              "severity_change_conditions": "If the endpoint is accessible over HTTPS with no encryption, the severity would decrease.",
+              "poc": {
+                "description": "1. Send a POST request to /api/login with empty credentials.\n2. Observe the response grants access without authentication.",
+                "script_available": true
+              }
+            }
+          }
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": false,
+          "toolExecutionNotifications": [
+            {
+              "level": "warning",
+              "message": {
+                "text": "The scan ended with status 'running' rather than completing, so coverage reflects only the work finished before it stopped."
+              }
+            },
+            {
+              "level": "warning",
+              "message": {
+                "text": "1 agent(s) did not finish cleanly (Root Agent); any surface they held is under-covered."
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "syntheticLocationCount": 1
+      }
+    }
+  ]
+}
